@@ -1,0 +1,3 @@
+- topmost - root
+- level : count of edges
+- neighbour : parent and child of a node are neighbours
