@@ -15,3 +15,14 @@
 - ancestor : any node in path to root
 - path : sequence of node such that each node is adjcent
 - height/depth of a tree : `max level of a leaf + 1`
+
+## Convert a tree to parenthesis representation
+
+```
+convert-to-parenthesis-style(root):
+    if(root has children){
+        print('parenthesis')
+        convert-to-parenthesis-style(children-one-by-one)
+        print('closing parentheis');
+    }
+```
