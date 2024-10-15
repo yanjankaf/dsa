@@ -68,6 +68,41 @@ struct Node *search(struct Node *root, int key)
 }
 
 
+struct Node* getInOrderSuccessor(struct Node* root)
+{
+    root = root->right;
+    while (root!= NULL && root->left != NULL)
+    {
+        root = root->left;
+    }
+    return root;
+};
+
+
+struct Node* deleteNode(struct Node* root, int val){
+    struct Node* s = search(root, val);
+    if(s != NULL){
+
+        if(s->left == NULL){
+           struct Node* right = s->right;
+           free(s);
+            return right;
+        }
+        
+        if(s->right == NULL){
+            struct Node* left = s->left;
+            free(s);
+            return left;
+        }
+
+        struct Node* succ = getInOrderSuccessor(s);
+        s->data = succ->data;
+        s->right = deleteNode(s->right, succ->data);
+    }
+    return s;
+}
+
+
 
 
 #endif
