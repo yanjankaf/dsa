@@ -11,5 +11,12 @@ int main(){
     createBST(root, 63);
     createBST(root, 44);
     createBST(root, 36);
-    inOrder(root);
+
+    struct Node* el = search(root, 56);
+    
+    if(el == NULL){
+        printf("89 not found");
+    }else{
+        printf("%x", el);
+    }
 }
