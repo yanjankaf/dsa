@@ -1,5 +1,5 @@
 COMPILE:./main.c
 	gcc main.c -o ../bin/bst
 
-RUN:../bin/bst
+RUN:COMPILE
 	../bin/bst
