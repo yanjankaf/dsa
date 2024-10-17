@@ -55,8 +55,9 @@ struct Node* deleteTail(struct Node* root){
      * head being NULL or the last tail
      * and free them up, and set the previous node to NULL
      * as well.
+     * 
      */
-    
+
     if(root == NULL || root->next == NULL){
         free(root);
         return NULL;
