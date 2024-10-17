@@ -49,4 +49,21 @@ struct Node* addNode_R(struct Node* head, int data){
     return head;
 }
 
+struct Node* deleteTail(struct Node* root){
+    /**
+     * Recursively check for NULL, that is either the 
+     * head being NULL or the last tail
+     * and free them up, and set the previous node to NULL
+     * as well.
+     */
+    
+    if(root == NULL || root->next == NULL){
+        free(root);
+        return NULL;
+    }else{
+        root->next = deleteTail(root->next);
+    }
+    return root;
+}
+
 #endif
