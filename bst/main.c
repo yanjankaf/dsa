@@ -2,21 +2,30 @@
 #include "bst.h"
 
 int main(){
-    struct Node* root = createBST(NULL, 45);
-    createBST(root, 56);
-    createBST(root, 43);
-    createBST(root, 71);
-    createBST(root, 82);
-    createBST(root, 92);
-    createBST(root, 63);
-    createBST(root, 44);
-    createBST(root, 36);
+    struct Node* root = NULL;
+    root = createBST(NULL, 56);
+    root = createBST(root, 18);
+    root = createBST(root, 20);
+    root = createBST(root, 19);
+    root = createBST(root, 70);
+    root = createBST(root, 64);
+    root = createBST(root, 81);
+    root = createBST(root, 91);
+    root = createBST(root, 62);
+    root = createBST(root, 65);
 
-    struct Node* el = search(root, 56);
+    inOrder(root);
+    // 18, 19, 20, 56, 62, 64, 65 70, 81, 91
+    printf("\n");
+
+    root = deleteNode(root, 64);
+    inOrder(root);
+    printf("\n");
+    root = deleteNode_Pred(root, 70);
+    inOrder(root);
+    printf("\n");
+
+
     
-    if(el == NULL){
-        printf("89 not found");
-    }else{
-        printf("%x", el);
-    }
+    
 }

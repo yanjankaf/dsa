@@ -67,4 +67,22 @@ struct Node* deleteTail(struct Node* root){
     return root;
 }
 
+
+
+struct Node* deleteNode_R(struct Node* head, int i){
+    if(head == NULL){
+        return NULL;
+    }
+    if(head->data != i){
+        head->next = deleteNode_R(head->next, i);
+    }else{
+        struct Node* tmp = head->next;
+        free(head);
+        return tmp;
+    }
+    return head;
+}
+
+
+
 #endif

@@ -79,30 +79,75 @@ struct Node* getInOrderSuccessor(struct Node* root)
 };
 
 
-struct Node* deleteNode(struct Node* root, int val){
-    struct Node* s = search(root, val);
-    if(s != NULL){
-
-        if(s->left == NULL){
-           struct Node* right = s->right;
-           free(s);
-            return right;
-        }
-        
-        if(s->right == NULL){
-            struct Node* left = s->left;
-            free(s);
-            return left;
-        }
-
-        struct Node* succ = getInOrderSuccessor(s);
-        s->data = succ->data;
-        s->right = deleteNode(s->right, succ->data);
+struct Node* getInOrderPredessor(struct Node* root){
+    root = root->left;
+    while (root != NULL && root->right != NULL)
+    {
+        root = root->right;
     }
-    return s;
+
+    return root;
+}
+
+struct Node* deleteNode(struct Node* root, int val){
+    if(root == NULL){
+        return NULL;
+    }
+    if(root->data < val){
+        root->right = deleteNode(root->right, val);
+    }else if(root->data > val){
+        root->left = deleteNode(root->left, val);
+    }else{
+        if(root->left != NULL && root->right == NULL){
+            struct Node* l = root->left;
+            free(root);
+            return l;
+        }else if(root->left == NULL && root->right != NULL){
+            struct Node* r = root->right;
+            free(root);
+            return r;
+        }else if(root->left == NULL && root->right == NULL){
+            free(root);
+            return NULL;
+        }else{
+            struct Node* succesor = getInOrderSuccessor(root);
+            root->data = succesor->data;
+            root->right = deleteNode(root->right, succesor->data);
+        }
+    }
+    return root;
 }
 
 
 
+
+struct Node* deleteNode_Pred(struct Node* root, int val){
+    if(root == NULL){
+        return NULL;
+    }
+    if(root->data < val){
+        root->right = deleteNode(root->right, val);
+    }else if(root->data > val){
+        root->left = deleteNode(root->left, val);
+    }else{
+        if(root->left != NULL && root->right == NULL){
+            struct Node* l = root->left;
+            free(root);
+            return l;
+        }else if(root->left == NULL && root->right != NULL){
+            struct Node* r = root->right;
+            free(root);
+            return r;
+        }else if(root->left == NULL && root->right == NULL){
+            free(root);
+            return NULL;
+        }else{
+            struct Node* pred = getInOrderPredessor(root);
+            root->data = pred->data;
+            root->left = deleteNode(root->left, pred->data);
+        }
+    }
+    return root;
+}
 
 #endif
