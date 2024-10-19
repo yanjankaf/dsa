@@ -69,4 +69,6 @@ void heapify(int *arr, int len)
     }
 }
 
+void insertIntoHeap(int* arr, int elem);
+
 #endif

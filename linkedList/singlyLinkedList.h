@@ -32,6 +32,15 @@ void traverse_R(struct Node* head){
     }
 }
 
+struct Node* reverse_R(struct Node* head, struct Node* prev){
+    if(head != NULL && head->next == NULL){
+        head->next = prev;
+        return head;
+    }else{
+        return reverse_R(head->next, head);
+    }
+}
+
 struct Node* addNode_R(struct Node* head, int data){
     
     /**
