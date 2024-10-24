@@ -3,21 +3,21 @@
 #include "../util/util.h"
 #define stackSize 10
 void push(int* stack, int* top, int item){
-    if(*top < stackSize - 1){
-        (*top) = (*top) + 1;
-        stack[*top] = item;
-    }else{
+    if(*top == stackSize - 1){
         printf("Stack overflow\n");
+        return;
     }
+    (*top) = (*top) + 1;
+    stack[*top] = item;
 }
 
 void pop(int* stack, int* top){
-    if(*top > -1){
-        (*top)--;
-        stack[(*top) + 1] = 0;
-    }else{
+    if(*top == -1){
         printf("Stack underflow\n");
+        return;   
     }
+    (*top)--;
+    stack[(*top) + 1] = 0;
 }
 
 
